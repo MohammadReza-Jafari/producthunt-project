@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="card col-md-8 offset-2" >
+        <div class="card-header bg-info text-center">Login</div>
+        <div class="card-body  ">
+            <form action="{% url 'login' %} " method="POST" class="col-10 offset-2 formhor">
+                {% if error %}
+                    <div class="form-group">
+                        <br>
+                        <div class="text-center alert bg-warning col-9">{{error}}</div>
+                    </div>
+                {% endif %}
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="form-control-label col-md-3">User Name :</label>
+                    <div class="col-md-9">
+                        <input type="text" name="username" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label col-md-3">Password :</label>
+                    <div class="col-md-9">
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-9">
+                        <input type="submit" value="Login" class="btn btn-outline-info btn-block">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock  %}
+    
