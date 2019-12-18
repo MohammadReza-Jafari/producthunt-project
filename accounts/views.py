@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.http import HttpResponseRedirect
+from urllib.parse import parse_qs,urlparse
 
 # Create your views here.
 
@@ -24,6 +26,10 @@ def login(request):
     if request.method=='POST':
         user=auth.authenticate( username=request.POST['username'], password=request.POST['password'])
         if user is not None:
+            if 'next' in request.META.get('HTTP_REFERER'):
+                redirecturl = parse_qs(urlparse(request.META.get('HTTP_REFERER')).query)
+                auth.login(request, user)
+                return redirect(redirecturl['next'][0])
             auth.login(request,user)
             return redirect('home')
         else:

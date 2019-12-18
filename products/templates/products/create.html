@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="card col-md-8 offset-2" >
+        <div class="card-header bg-info text-center">Create Product</div>
+        <div class="card-body  ">
+            <form action="{% url 'create' %} " method="POST" class="col-10 offset-2 formhor" enctype="multipart/form-data">
+                {% if error %}
+                    <div class="form-group">
+                        <br>
+                        <div class="text-center alert bg-warning col-9">{{error}}</div>
+                    </div>
+                {% endif %}
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="form-control-label col-md-3">Title :</label>
+                    <div class="col-md-9">
+                        <input type="text" name="title" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label col-md-3">Body :</label>
+                    <div class="col-md-9">
+                        <textarea name="body" cols="48" rows="8"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label col-md-3">URL :</label>
+                    <div class="col-md-9">
+                        <input type="text" name="url" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label col-md-3">Icon :</label>
+                    <div class="col-md-9">
+                        <input type="file" name="icon" class="form-control-file">
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="form-control-label col-md-3">Image :</label>
+                    <div class="col-md-9">
+                        <input type="file" name="image" class="form-control-file">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9">
+                        <input type="submit" value="Sign Up" class="btn btn-outline-success btn-block">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock  %}
+    
